@@ -1,0 +1,14 @@
+.todo-list {
+  width: 600px;
+  padding: 20px 0;
+  margin: 50px auto;
+  border-radius: 3px;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px 4px #ddd; }
+  .todo-list .icon-save {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    font-size: 16px; }
+  .todo-list .alert-row {
+    margin-bottom: 10px; }
