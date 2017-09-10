@@ -15,7 +15,7 @@ export function getTodos() {
  * 保存列表信息到 localStorage
  * 
  * @export
- * @param {any} list 
+ * @param {Array<any>} list 
  */
 export function saveTodos(list) {
     list = list || [];

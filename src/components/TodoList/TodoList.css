@@ -12,3 +12,5 @@
     font-size: 16px; }
   .todo-list .alert-row {
     margin-bottom: 10px; }
+  .todo-list .control-group {
+    line-height: 36px; }
