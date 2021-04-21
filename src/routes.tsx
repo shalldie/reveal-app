@@ -1,12 +1,18 @@
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import {AppLayout} from './components/layout';
 import {Dashboard} from './views/Dashboard';
 import {PageNotFound} from './views/PageNotFound';
 
 export const AppRoutes = () => (
     <Router>
-        <Switch>
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route component={PageNotFound} />
-        </Switch>
+        <Route path="/">
+            <AppLayout>
+                <Switch>
+                    <Route path="/dashboard" exact component={Dashboard} />
+                    <Redirect to="/dashboard" from="/" exact />
+                    <Route component={PageNotFound} />
+                </Switch>
+            </AppLayout>
+        </Route>
     </Router>
 );
