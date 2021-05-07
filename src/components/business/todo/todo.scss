@@ -6,4 +6,19 @@
     .page {
         flex: 1;
     }
+
+    .todo-panel {
+        position: relative;
+        .btn-add {
+            position: absolute;
+            right: 10px;
+            top: 2px;
+        }
+    }
+
+    .todo-list {
+        .todo-item-txt {
+            cursor: pointer;
+        }
+    }
 }

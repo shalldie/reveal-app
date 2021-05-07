@@ -1,13 +1,17 @@
 import {Tabs} from 'antd';
 import {useHistory, useParams} from 'react-router';
 import {ETodoType} from '~/common/enums';
-import {Counter} from './Counter';
+import {TodoAddItem} from './src/TodoAddItem';
+import {useTodoService, withTodoContext} from './TodoService';
+import {TodoList} from './src/TodoList';
 
 const TabPanel = Tabs.TabPane;
 
-export function TodoPanel() {
+export const TodoPanel = withTodoContext(() => {
     const {type} = useParams<{type: string}>();
     const history = useHistory();
+    const todo = useTodoService();
+    todo.initialize();
 
     const toggleTab = (todoType: typeof ETodoType.idsEnum) => {
         if (type === todoType) {
@@ -18,14 +22,14 @@ export function TodoPanel() {
 
     return (
         <div className="todo-panel">
-            <Counter />
             <Tabs activeKey={type} onChange={toggleTab}>
                 {ETodoType.toArray().map(item => (
                     <TabPanel tab={item.label} key={item.id}>
-                        this is {item.label}
+                        <TodoList type={type} />
                     </TabPanel>
                 ))}
             </Tabs>
+            <TodoAddItem />
         </div>
     );
-}
+});
