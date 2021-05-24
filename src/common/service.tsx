@@ -1,35 +1,38 @@
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useRef, useState} from 'react';
 
-export class ServiceBase {
-    public state = {};
-    setState!: React.Dispatch<React.SetStateAction<any>>;
-}
-
-export function ServiceDecorator<T extends {new (...args: any[]): {}}>(constructor: T) {
-    return class extends constructor {
-        constructor(...args: any[]) {
-            super(...args);
-
-            // eslint-disable-next-line
-            const [state, setState] = useState(this['state']);
-            this['state'] = state;
-            this['setState'] = (payload: any) => {
-                setState({
-                    ...state,
-                    ...payload
-                });
-            };
-        }
-    };
+export class ServiceBase<S = {}> {
+    public state: S = {} as any;
+    setState!: React.Dispatch<React.SetStateAction<Partial<S>>>;
 }
 
 export function createServiceCtx<S extends ServiceBase>(Service: new () => S, Context = createContext<S>(null as any)) {
     function withContext<T>(Child: React.ComponentType<T>) {
         return (props: T) => {
-            const s = new Service();
+            const sr = useRef<S>(null as any);
+            if (!sr.current) {
+                sr.current = new Service();
+            }
+
+            const [state, setState] = useState(sr.current.state);
+            sr.current.state = state;
+            sr.current.setState = (payload: Function | Object) => {
+                if (typeof payload === 'function') {
+                    const result = payload(state);
+                    setState({
+                        ...state,
+                        ...result
+                    });
+                    return;
+                }
+
+                setState({
+                    ...state,
+                    ...payload
+                });
+            };
 
             return (
-                <Context.Provider value={s}>
+                <Context.Provider value={sr.current}>
                     <Child {...props} />
                 </Context.Provider>
             );

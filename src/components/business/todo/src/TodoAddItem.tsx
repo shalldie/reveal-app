@@ -30,8 +30,14 @@ export function TodoAddItem() {
             <Button className="btn-add" onClick={showModal}>
                 添加
             </Button>
-            <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={closeModal}>
-                <Form form={form} initialValues={new TodoItemForm()}>
+            <Modal
+                title="Basic Modal"
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={closeModal}
+                destroyOnClose={true}
+            >
+                <Form form={form} initialValues={new TodoItemForm()} preserve={false}>
                     <Form.Item name="todoName" rules={[{required: true}]}>
                         <Input placeholder="Enter new todo." />
                     </Form.Item>
