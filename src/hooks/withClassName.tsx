@@ -10,8 +10,8 @@ import classNames from 'classnames';
 // };
 
 export function withClassName<T extends {className?: string}>(
-    extraClassName: string,
-    BaseComponent: React.ComponentType<T>
+    BaseComponent: React.ComponentType<T>,
+    extraClassName: string
 ) {
     const WrappedComponent = (props: T) => (
         <BaseComponent {...props} className={classNames(props.className, extraClassName)} />
