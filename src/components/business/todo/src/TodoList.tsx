@@ -1,6 +1,6 @@
 import {useMemo} from 'react';
 import {ETodoType} from '~/common/enums';
-import {useTodoService} from '../TodoService';
+import {useTodoService} from '../service';
 import {List, Typography} from 'antd';
 import {DeleteOutlined} from '@ant-design/icons';
 

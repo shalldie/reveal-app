@@ -1,6 +1,6 @@
 import {ETodoType} from '~/common/enums';
 import {ServiceBase, createServiceCtx} from '~/common/service';
-import {syncMemo2Storage} from './uses';
+import {syncMemo2Storage} from '../uses';
 
 class TodoServiceState {
     name = 'tom';
@@ -17,16 +17,18 @@ class TodoService extends ServiceBase<TodoServiceState> {
 
     addItem(name: string) {
         this.setState({
-            list: [...this.state.list, {name, type: ETodoType.UNDONE}]
+            list: [...this.state.list, {name, type: ETodoType.UNDONE}],
+            name: '',
+            age: 12
         });
     }
 
-    delItem(item: TodoServiceState['list'][number]) {
+    delItem(item: {name: string; type: typeof ETodoType.idsEnum}) {
         const list = this.state.list.filter(n => n !== item);
         this.setState({list});
     }
 
-    toggleItem(item: TodoServiceState['list'][number]) {
+    toggleItem(item: {name: string; type: typeof ETodoType.idsEnum}) {
         item.type = item.type === ETodoType.DONE ? ETodoType.UNDONE : ETodoType.DONE;
         this.setState({
             list: [...this.state.list]

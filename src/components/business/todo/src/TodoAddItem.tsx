@@ -1,6 +1,6 @@
 import {Button, Modal, Form, Input} from 'antd';
 import {useState} from 'react';
-import {useTodoService} from '../TodoService';
+import {useTodoService} from '../service';
 
 class TodoItemForm {
     todoName = '';

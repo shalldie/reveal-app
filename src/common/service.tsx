@@ -3,6 +3,15 @@ import {createContext, useContext, useRef, useState} from 'react';
 export class ServiceBase<S = {}> {
     public state: S = {} as any;
     setState!: React.Dispatch<React.SetStateAction<Partial<S>>>;
+
+    // setState!: (state: Partial<this['state']>) => void;
+
+    // setState!: React.Dispatch<React.SetStateAction<Partial<this['state']>>>;
+
+    // setState!: (
+    //     state: Partial<this['state']>
+    // ) => void | ((payload: (preState: Partial<this['state']>) => Partial<this['state']>) => void);
+    // setState!: Partial<this['state']>;
 }
 
 export function createServiceCtx<S extends ServiceBase>(Service: new () => S, Context = createContext<S>(null as any)) {

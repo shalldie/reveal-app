@@ -2,7 +2,7 @@ import {Tabs} from 'antd';
 import {useHistory, useParams} from 'react-router';
 import {ETodoType} from '~/common/enums';
 import {TodoAddItem} from './src/TodoAddItem';
-import {useTodoService, withTodoContext} from './TodoService';
+import {useTodoService, withTodoContext} from './service';
 import {TodoList} from './src/TodoList';
 
 const TabPanel = Tabs.TabPane;

@@ -1,5 +1,5 @@
 import {useEffect, useRef} from 'react';
-import {useTodoService} from '../TodoService';
+import {useTodoService} from '../service';
 
 const TODOLIST_STORAGE_KEY = 'TODOLIST_STORAGE_KEY';
 
