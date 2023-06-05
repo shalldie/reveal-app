@@ -141,11 +141,15 @@ html、js、css等都是静态文件，托管在 webserver，开发人员写的�
 
 node
 
+<!-- nvm、fnm 去安装，大家用 nvm 就行了 -->
+
 <!-- 自带了 npm 包管理器 -->
 
 ---
 
 ### vue 应用 - 脚手架
+
+<!-- https://cli.vuejs.org/zh/guide/installation.html -->
 
 ---
 
@@ -154,3 +158,7 @@ node
 ---
 
 ### vue 应用 - 路由、页面
+
+---
+
+### vue 应用 - 使用第三方组件
